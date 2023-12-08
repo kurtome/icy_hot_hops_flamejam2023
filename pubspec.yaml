@@ -36,4 +36,8 @@ flutter:
     - assets/images/level_standard_tileset.png
     - assets/images/repeatable_background.png
     - assets/images/player_spritesheet.png
+    - assets/images/pixel_platformer_tileset/background/
+    - assets/images/pixel_platformer_tileset/cave/
+    - assets/images/pixel_platformer_tileset/ice/
+    - assets/images/pixel_platformer_tileset/grass/
     - assets/tiles/

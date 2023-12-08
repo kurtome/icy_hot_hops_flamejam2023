@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="120" height="40" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#3a889e" nextlayerid="12" nextobjectid="73">
- <tileset firstgid="1" name="level_standard_tileset" tilewidth="16" tileheight="16" tilecount="640" columns="32">
-  <image source="../images/level_standard_tileset.png" width="512" height="320"/>
+ <tileset firstgid="1" name="grass_tileset" tilewidth="16" tileheight="16" tilecount="640" columns="32">
+  <image source="../images/pixel_platformer_tileset/grass/grass_tileset.png" width="512" height="320"/>
  </tileset>
- <tileset firstgid="641" name="level_ice_tileset" tilewidth="16" tileheight="16" tilecount="640" columns="32">
-  <image source="../images/level_ice_tileset.png" width="512" height="320"/>
+ <tileset firstgid="641" name="ice_tileset" tilewidth="16" tileheight="16" tilecount="640" columns="32">
+  <image source="../images/pixel_platformer_tileset/ice/ice_tileset.png" width="512" height="320"/>
   <tile id="194" type="Hazard">
    <properties>
     <property name="Damage" type="int" value="10"/>
@@ -95,6 +95,9 @@
   <tile id="519" type="OneWayTopPlatform"/>
   <tile id="522" type="OneWayTopPlatform"/>
   <tile id="523" type="OneWayTopPlatform"/>
+ </tileset>
+ <tileset firstgid="1281" name="cave_tileset" tilewidth="16" tileheight="16" tilecount="640" columns="32">
+  <image source="../images/pixel_platformer_tileset/cave/cave_tileset.png" width="512" height="320"/>
  </tileset>
  <imagelayer id="7" name="Sky" offsetx="-340" offsety="-135" parallaxx="0.4" parallaxy="0.4" repeatx="1">
   <image source="../images/repeatable_background.png" width="512" height="303"/>
