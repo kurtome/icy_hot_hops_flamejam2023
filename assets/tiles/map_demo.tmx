@@ -260,7 +260,7 @@
   </object>
   <object id="72" name="Welcome" type="InfoSign" x="224" y="368" width="96" height="32">
    <properties>
-    <property name="Text" value="Welcome to the game! Use arrow buttons or WASD to move, and Space bar (or up) to jump and Alt (or Down) to interact"/>
+    <property name="Text" value="Welcome to the game! Use arrow buttons or WASD to move, and Space bar (or up) to jump and Enter (or Down) to interact"/>
    </properties>
   </object>
  </objectgroup>

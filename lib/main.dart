@@ -4,6 +4,7 @@ import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/basic_ladder.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/coin.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/door.dart';
@@ -23,7 +24,7 @@ class IcyHotGame extends LeapGame with HasKeyboardHandlerComponents {
   });
 
   Player? player;
-  late final ThreeButtonInput input;
+  late final FourButtonInput input;
   late final Map<String, TiledObjectHandler> tiledObjectHandlers;
   late final Map<String, GroundTileHandler> groundTileHandlers;
 
@@ -73,7 +74,30 @@ class IcyHotGame extends LeapGame with HasKeyboardHandlerComponents {
       height: tileSize * 16,
     );
 
-    input = ThreeButtonInput();
+    input = FourButtonInput(
+      keyboardInput: FourButtonKeyboardInput(
+        leftKeys: {
+          PhysicalKeyboardKey.arrowLeft,
+          PhysicalKeyboardKey.keyA,
+        },
+        rightKeys: {
+          PhysicalKeyboardKey.arrowRight,
+          PhysicalKeyboardKey.keyD,
+        },
+        // use up for jump
+        upKeys: {
+          PhysicalKeyboardKey.space,
+          PhysicalKeyboardKey.arrowUp,
+          PhysicalKeyboardKey.keyW,
+        },
+        // use down for interact
+        downKeys: {
+          PhysicalKeyboardKey.enter,
+          PhysicalKeyboardKey.arrowDown,
+          PhysicalKeyboardKey.keyS,
+        },
+      ),
+    );
     add(input);
 
     await _loadLevel();

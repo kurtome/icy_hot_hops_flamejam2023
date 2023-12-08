@@ -15,7 +15,7 @@ class Player extends JumperCharacter<IcyHotGame> {
   static const initialHealth = 1;
 
   late final Vector2 _spawn;
-  late final ThreeButtonInput _input;
+  late final FourButtonInput _input;
 
   int coins = 0;
   double deadTime = 0;
@@ -106,7 +106,7 @@ class Player extends JumperCharacter<IcyHotGame> {
         collisionInfo.allCollisions.whereType<Ladder>().firstOrNull;
     final onLadderStatus = getStatus<OnLadderStatus>();
     if (_input.justPressed &&
-        _input.isPressedCenter &&
+        _input.isPressedDown &&
         ladderCollision != null &&
         onLadderStatus == null) {
       final status = OnLadderStatus(ladderCollision);
@@ -119,7 +119,7 @@ class Player extends JumperCharacter<IcyHotGame> {
         status.movement = LadderMovement.up;
       }
     } else if (_input.justPressed && onLadderStatus != null) {
-      if (_input.isPressedCenter) {
+      if (_input.isPressedDown || _input.isPressedUp) {
         if (onLadderStatus.movement != LadderMovement.stopped) {
           onLadderStatus.movement = LadderMovement.stopped;
         } else if (onLadderStatus.prevDirection == LadderMovement.up) {
@@ -208,7 +208,7 @@ class Player extends JumperCharacter<IcyHotGame> {
         other.activateText();
       }
 
-      if (other is Door && _input.justPressed && _input.isPressedCenter) {
+      if (other is Door && _input.justPressed && _input.isPressedDown) {
         other.enter(this);
       }
     }
