@@ -1,0 +1,39 @@
+name: icy_hot_hops_flamejam2023
+description: A simple Flame game.
+version: 0.1.0
+
+publish_to: 'none'
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flame: 1.11.0
+  flame_audio: 2.1.4
+  flame_tiled: 1.18.0
+  flutter:
+    sdk: flutter
+  leap: 0.5.2
+  tiled: 0.10.1
+
+dev_dependencies:
+  flame_lint: 1.1.2
+  flame_test: 1.15.0
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: false
+  assets:
+    - assets/audio/die.wav
+    - assets/audio/coin.wav
+    - assets/audio/jump.wav
+    - assets/audio/spawn.wav
+    - assets/audio/village_music.mp3
+    - assets/images/level_ice_tileset.png
+    - assets/images/level_standard_tileset.png
+    - assets/images/repeatable_background.png
+    - assets/images/player_spritesheet.png
+    - assets/tiles/
