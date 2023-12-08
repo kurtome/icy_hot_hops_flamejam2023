@@ -4,23 +4,26 @@ import 'package:flutter/foundation.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/coin.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/door.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/info_sign.dart';
-import 'package:icy_hot_hops_flamejam2023/main.dart';
+import 'package:icy_hot_hops_flamejam2023/entities/player/coin_jumper_character.dart';
+import 'package:icy_hot_hops_flamejam2023/input.dart';
 import 'package:leap/leap.dart';
 
-class Player extends JumperCharacter<IcyHotGame> {
+class Player extends CoinJumperCharacter {
   Player({super.health = initialHealth}) : super(removeOnDeath: false) {
     solidTags.add(CommonTags.ground);
   }
 
   static const initialHealth = 1;
 
-  late final Vector2 _spawn;
-  late final FourButtonInput _input;
-
   int coins = 0;
+
+  late final Vector2 _spawn;
+  late final IcyHotInput _input;
+
   double deadTime = 0;
   double timeHoldingJump = 0;
   bool didEnemyBop = false;
+  int jumpCount = 0;
 
   /// Render on top of the map tiles.
   @override
@@ -39,13 +42,15 @@ class Player extends JumperCharacter<IcyHotGame> {
 
     resetPosition();
 
-    walkSpeed = map.tileSize * 7;
+    walkSpeed = map.tileSize * 10;
     minJumpImpulse = world.gravity * 0.6;
   }
 
   @override
   void update(double dt) {
     super.update(dt);
+
+    debugCollisions = false;
 
     final wasAlive = isAlive;
     final wasJumping = jumping;
@@ -89,7 +94,7 @@ class Player extends JumperCharacter<IcyHotGame> {
     if (isAlive) {
       // Keep jumping if started.
       if (jumping &&
-          _input.isPressed &&
+          _input.isPressedJump &&
           timeHoldingJump < maxJumpHoldTime &&
           // hitting a ceiling should behave the same
           // as letting go of the jump button
@@ -135,51 +140,37 @@ class Player extends JumperCharacter<IcyHotGame> {
         // Make sure the player exits the ladder facing the direction jumped
         faceLeft = _input.isPressedLeft;
       }
-    } else if (_input.justPressed && _input.isPressedLeft) {
+    } else {
+      // Not on a ladder or anything
+
       // Tapped left.
-      if (walking) {
-        if (faceLeft) {
-          // Already moving left.
-          if (isOnGround) {
-            jumping = true;
-          }
-        } else {
-          // Moving right, stop.
-          if (isOnGround) {
-            walking = false;
-          }
-          faceLeft = true;
-        }
-      } else {
-        // Standing still.
+      if (_input.isPressedLeft) {
         walking = true;
         faceLeft = true;
-        if (isOnGround) {
-          airXVelocity = walkSpeed;
-        }
-      }
-    } else if (_input.justPressed && _input.isPressedRight) {
-      // Tapped right.
-      if (walking) {
-        if (!faceLeft) {
-          // Already moving right.
-          if (isOnGround) {
-            jumping = true;
-          }
-        } else {
-          // Moving left, stop.
-          if (isOnGround) {
-            walking = false;
-          }
-          faceLeft = false;
-        }
-      } else {
-        // Standing still.
+      } else if (_input.isPressedRight) {
         walking = true;
         faceLeft = false;
-        if (isOnGround) {
-          airXVelocity = walkSpeed;
-        }
+      } else {
+        walking = false;
+      }
+
+      if (_input.isJustPressedJump && isOnGround) {
+        jumping = true;
+        jumpCount = 1;
+      } else if (isOnGround) {
+        jumpCount = 0;
+      }
+
+      /// Double jumps, costs a coin, must be in air, only once
+      if (_input.isJustPressedJump &&
+          !jumping &&
+          coins > 0 &&
+          !isOnGround &&
+          jumpCount < 2) {
+        jumping = true;
+        velocity.y = -minJumpImpulse;
+        jumpCount++;
+        coins--;
       }
     }
   }
