@@ -23,6 +23,7 @@ class Player extends CoinJumperCharacter {
   double deadTime = 0;
   double timeHoldingJump = 0;
   bool didEnemyBop = false;
+  bool didAirJump = false;
   int jumpCount = 0;
 
   /// Render on top of the map tiles.
@@ -54,6 +55,9 @@ class Player extends CoinJumperCharacter {
 
     final wasAlive = isAlive;
     final wasJumping = jumping;
+
+    didAirJump = false;
+    didEnemyBop = false;
 
     updateHandleInput(dt);
 
@@ -110,8 +114,7 @@ class Player extends CoinJumperCharacter {
     final ladderCollision =
         collisionInfo.allCollisions.whereType<Ladder>().firstOrNull;
     final onLadderStatus = getStatus<OnLadderStatus>();
-    if (_input.justPressed &&
-        _input.isPressedDown &&
+    if ((_input.isJustPressedUp || _input.isJustPressedDown) &&
         ladderCollision != null &&
         onLadderStatus == null) {
       final status = OnLadderStatus(ladderCollision);
@@ -123,16 +126,16 @@ class Player extends CoinJumperCharacter {
       } else {
         status.movement = LadderMovement.up;
       }
-    } else if (_input.justPressed && onLadderStatus != null) {
-      if (_input.isPressedDown || _input.isPressedUp) {
-        if (onLadderStatus.movement != LadderMovement.stopped) {
-          onLadderStatus.movement = LadderMovement.stopped;
-        } else if (onLadderStatus.prevDirection == LadderMovement.up) {
-          onLadderStatus.movement = LadderMovement.down;
-        } else {
-          onLadderStatus.movement = LadderMovement.up;
-        }
+    } else if (onLadderStatus != null) {
+      if (_input.isPressedUp) {
+        onLadderStatus.movement = LadderMovement.up;
+      } else if (_input.isPressedDown) {
+        onLadderStatus.movement = LadderMovement.down;
       } else {
+        onLadderStatus.movement = LadderMovement.stopped;
+      }
+
+      if (_input.isJustPressedJump) {
         // JumperBehavior will handle applying the jump and exiting the ladder
         jumping = true;
         airXVelocity = walkSpeed;
@@ -168,7 +171,7 @@ class Player extends CoinJumperCharacter {
           !isOnGround &&
           jumpCount < 2) {
         jumping = true;
-        velocity.y = -minJumpImpulse;
+        didAirJump = true;
         jumpCount++;
         coins--;
       }
@@ -182,11 +185,6 @@ class Player extends CoinJumperCharacter {
 
     if (isDead) {
       return;
-    }
-
-    if (didEnemyBop) {
-      didEnemyBop = false;
-      velocity.y = -minJumpImpulse;
     }
 
     for (final other in collisionInfo.allCollisions) {

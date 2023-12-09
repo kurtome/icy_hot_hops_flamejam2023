@@ -1,10 +1,10 @@
 import 'dart:math';
 
-import 'package:icy_hot_hops_flamejam2023/entities/player/coin_jumper_character.dart';
+import 'package:icy_hot_hops_flamejam2023/entities/player.dart';
 import 'package:leap/leap.dart';
 
 /// Updates the [JumperCharacter] movement logic.
-class CoinJumperBehavior extends PhysicalBehavior<CoinJumperCharacter> {
+class CoinJumperBehavior extends PhysicalBehavior<Player> {
   @override
   void update(double dt) {
     super.update(dt);
@@ -26,7 +26,10 @@ class CoinJumperBehavior extends PhysicalBehavior<CoinJumperCharacter> {
         } else {
           parent.gravityRate = 1.4;
         }
+      } else if (parent.didAirJump || parent.didEnemyBop) {
+        velocity.y = -parent.minJumpImpulse;
       } else {
+        // in the air, no longer accelerating upwards
         velocity.y = min(-parent.minJumpImpulse * 0.7, velocity.y);
       }
     } else if (!parent.isOnGround) {
@@ -44,15 +47,24 @@ class CoinJumperBehavior extends PhysicalBehavior<CoinJumperCharacter> {
           velocity.x = parent.walkSpeed;
         }
       } else {
-        velocity.x = 0;
+        if (parent.faceLeft) {
+          velocity.x = min(velocity.x + parent.walkSpeed * 2 * dt, 0);
+        } else {
+          velocity.x = max(velocity.x - parent.walkSpeed * 2 * dt, 0);
+        }
       }
       parent.airXVelocity = velocity.x.abs();
     } else {
       // in the air
-      if (parent.faceLeft) {
-        velocity.x = -parent.airXVelocity;
-      } else {
-        velocity.x = parent.airXVelocity;
+      if (parent.walking) {
+        // should be able to accelerate from a stand still in the air
+        parent.airXVelocity = max(parent.walkSpeed, parent.airXVelocity);
+
+        if (parent.faceLeft) {
+          velocity.x = -parent.airXVelocity;
+        } else {
+          velocity.x = parent.airXVelocity;
+        }
       }
     }
   }

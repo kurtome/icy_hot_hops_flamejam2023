@@ -56,6 +56,7 @@ class IcyHotInput extends Component
 
     actionKeys = {
       PhysicalKeyboardKey.enter,
+      PhysicalKeyboardKey.shiftLeft,
     };
 
     relevantKeys = leftKeys
@@ -102,14 +103,34 @@ class IcyHotInput extends Component
   bool get isPressedLeft =>
       _appFocused && isPressed && keysDown.intersection(leftKeys).isNotEmpty;
 
+  bool get isJustPressedLeft =>
+      _appFocused &&
+      isPressed &&
+      keysJustPressed.intersection(leftKeys).isNotEmpty;
+
   bool get isPressedRight =>
       _appFocused && isPressed && keysDown.intersection(rightKeys).isNotEmpty;
+
+  bool get isJustPressedRight =>
+      _appFocused &&
+      isPressed &&
+      keysJustPressed.intersection(rightKeys).isNotEmpty;
 
   bool get isPressedUp =>
       _appFocused && isPressed && keysDown.intersection(upKeys).isNotEmpty;
 
+  bool get isJustPressedUp =>
+      _appFocused &&
+      isPressed &&
+      keysJustPressed.intersection(upKeys).isNotEmpty;
+
   bool get isPressedDown =>
       _appFocused && isPressed && keysDown.intersection(downKeys).isNotEmpty;
+
+  bool get isJustPressedDown =>
+      _appFocused &&
+      isPressed &&
+      keysJustPressed.intersection(downKeys).isNotEmpty;
 
   bool get isPressedJump =>
       _appFocused && isPressed && keysDown.intersection(jumpKeys).isNotEmpty;
@@ -121,6 +142,11 @@ class IcyHotInput extends Component
 
   bool get isPressedAction =>
       _appFocused && isPressed && keysDown.intersection(actionKeys).isNotEmpty;
+
+  bool get isJustPressedAction =>
+      _appFocused &&
+      isPressed &&
+      keysJustPressed.intersection(actionKeys).isNotEmpty;
 
   @override
   bool onKeyEvent(RawKeyEvent keyEvent, Set<LogicalKeyboardKey> keysPressed) {
