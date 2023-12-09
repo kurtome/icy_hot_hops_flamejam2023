@@ -190,9 +190,9 @@
    <point/>
   </object>
   <object id="94" name="BasicLadder" type="BasicLadder" x="118.863" y="440.161" width="16" height="96"/>
-  <object id="96" x="224" y="416" width="32" height="32">
+  <object id="96" name="sign 1" type="InfoSign" x="208" y="384" width="64" height="64">
    <properties>
-    <property name="Text" value="Rest, weary traveler. Your journey will continue soon. "/>
+    <property name="Text" value="You’ve made it! Good, good. Rest your weary thumbs, traveler. It’s safe here. No more jumping, ha HA! Have you seen Martin? He’s my adopted… my son. I’ve tried to convince him to journey with me, but he seems to think lounging on a platform is more appropriate than leaping forward into the unknown. No matter, you’re here. Take this coin. It should prove useful in the trials ahead. —J.M."/>
    </properties>
   </object>
   <object id="97" name="Level Exit" type="Door" x="288" y="432.07" width="16" height="15.9298">

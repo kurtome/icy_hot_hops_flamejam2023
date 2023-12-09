@@ -8,6 +8,7 @@ import 'package:icy_hot_hops_flamejam2023/entities/basic_ladder.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/coin.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/door.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/enemies/slug.dart';
+import 'package:icy_hot_hops_flamejam2023/entities/enemies/snowman_boss.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/enemy_bumper.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/grass_moving_platform.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/info_sign.dart';
@@ -31,7 +32,11 @@ class IcyHotGame extends LeapGame with HasKeyboardHandlerComponents {
   late final Map<String, TiledObjectHandler> tiledObjectHandlers;
   late final Map<String, GroundTileHandler> groundTileHandlers;
 
-  var _currentLevel = 'map_level_cave_2.tmx';
+  var _currentLevel = 'map_level_cold_3.tmx';
+  final _levelMusic = {
+    'map_level_cold_2.tmx': 'just-a-dream-wake-up.mp3',
+    'map_level_cold_3.tmx': 'waiting-time.mp3',
+  };
 
   Future<void> _loadLevel() async {
     await loadWorldAndMap(
@@ -52,6 +57,8 @@ class IcyHotGame extends LeapGame with HasKeyboardHandlerComponents {
         leapMap.height - inset.y,
       ),
     );
+
+    _playLevelBgm();
   }
 
   @override
@@ -67,6 +74,8 @@ class IcyHotGame extends LeapGame with HasKeyboardHandlerComponents {
       'Door': DoorFactory(),
       'Bumper': EnemyBumperFactory(),
       'Enemy': SlugFactory(),
+      'SnowmanBoss': SnowmanBossFactory(),
+      'SnowmanBossTrigger': SnowmanBossTriggerFactory(),
     };
 
     groundTileHandlers = {
@@ -88,10 +97,6 @@ class IcyHotGame extends LeapGame with HasKeyboardHandlerComponents {
     player = Player();
     world.add(player!);
     camera.follow(player!);
-
-    if (!FlameAudio.bgm.isPlaying) {
-      FlameAudio.bgm.play('village_music.mp3');
-    }
 
     camera.viewport.add(Hud());
   }
@@ -115,13 +120,21 @@ class IcyHotGame extends LeapGame with HasKeyboardHandlerComponents {
     await _loadLevel();
   }
 
+  void _playLevelBgm() {
+    var track = 'village_music.mp3';
+    if (_levelMusic.containsKey(_currentLevel)) {
+      track = _levelMusic[_currentLevel]!;
+    }
+    FlameAudio.bgm.play(track);
+  }
+
   @override
   void update(double dt) {
     super.update(dt);
 
     // On web, we need to wait for a user interaction before playing any sound.
     if (input.justPressed && !FlameAudio.bgm.isPlaying) {
-      FlameAudio.bgm.play('village_music.mp3');
+      _playLevelBgm();
     }
   }
 }

@@ -27,11 +27,7 @@ dev_dependencies:
 flutter:
   uses-material-design: false
   assets:
-    - assets/audio/die.wav
-    - assets/audio/coin.wav
-    - assets/audio/jump.wav
-    - assets/audio/spawn.wav
-    - assets/audio/village_music.mp3
+    - assets/audio/
     - assets/images/
     - assets/images/dungeon_toolkit/
     - assets/images/pixel_platformer_tileset/background/

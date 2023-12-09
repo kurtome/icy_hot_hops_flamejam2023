@@ -163,9 +163,9 @@
   <object id="19" name="Spawn" type="PlayerSpawn" x="48" y="400">
    <point/>
   </object>
-  <object id="89" name="Signpost 2.5" type="InfoSign" x="144.675" y="402.536" width="29.7097" height="29.4639">
+  <object id="89" name="Signpost 2.5" type="InfoSign" x="112" y="304" width="96" height="128">
    <properties>
-    <property name="Text" value="Welcome, traveler. Rest your weary head awhile. Take this coin. It's free, just for you. "/>
+    <property name="Text" value="Rest, traveler. Your thumbs must be weary. Enjoy this coin — it will prove useful should you run into more dangers ahead. But now that we have a moment, traveler, I’d like to talk more about legacy. Specifically about how hard it is for parents to see their child flounder. You may have met mine, my adopted… my son, Martin. He’s never shown any interest in climbing the mountain OR spelunking the caves, and I’m at a loss. Honestly, I’m on this journey now solely to convince him that if I can do it so can he. — J.M. "/>
    </properties>
   </object>
   <object id="92" name="Level exit" type="Door" x="352" y="416" width="15.7438" height="15.7438">

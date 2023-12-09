@@ -3,6 +3,7 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/coin.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/door.dart';
+import 'package:icy_hot_hops_flamejam2023/entities/enemies/snowman_boss.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/info_sign.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/player/coin_jumper_character.dart';
 import 'package:icy_hot_hops_flamejam2023/input.dart';
@@ -210,6 +211,10 @@ class Player extends CoinJumperCharacter {
           _input.isPressedDown &&
           !hasStatus<EnteringDoorStatus>()) {
         other.startEnter(this);
+      }
+
+      if (other is SnowmanBossTrigger) {
+        other.trigger();
       }
     }
   }

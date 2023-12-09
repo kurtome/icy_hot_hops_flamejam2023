@@ -14,6 +14,7 @@ class EnemyCharacter extends Character<IcyHotGame> {
     // This makes it possible for players to "bop" from the top.
     isSolidFromLeft = false;
     isSolidFromRight = false;
+    isSolidFromBottom = false;
   }
 
   bool faceLeft = true;
@@ -34,6 +35,10 @@ class EnemyCharacter extends Character<IcyHotGame> {
   void update(double dt) {
     super.update(dt);
 
+    if (isDead) {
+      return;
+    }
+
     if (walking) {
       if (faceLeft) {
         velocity.x = -walkSpeed;
@@ -44,9 +49,7 @@ class EnemyCharacter extends Character<IcyHotGame> {
 
     for (final other in collisionInfo.allCollisions) {
       if (other is EnemyBumper) {
-        if (collisionInfo.down) {
-          faceLeft = other.x > x;
-        }
+        faceLeft = other.x > x;
       }
     }
 

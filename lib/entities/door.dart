@@ -22,6 +22,14 @@ class Door extends PhysicalEntity<IcyHotGame> {
     }
   }
 
+  Door.placedToMap({
+    required super.position,
+    required super.size,
+    this.destinationMap,
+  }) : super(
+          static: true,
+        );
+
   late final String? destinationMap;
   late final TiledObject? destinationObject;
   late SpriteAnimationComponent spriteAnimation;
