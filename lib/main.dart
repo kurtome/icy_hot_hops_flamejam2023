@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/basic_ladder.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/coin.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/door.dart';
+import 'package:icy_hot_hops_flamejam2023/entities/grass_moving_platform.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/info_sign.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/player.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/snowy_moving_platform.dart';
@@ -57,7 +58,8 @@ class IcyHotGame extends LeapGame with HasKeyboardHandlerComponents {
 
     tiledObjectHandlers = {
       'Coin': await CoinFactory.createFactory(),
-      'SnowyMovingPlatform': await SnowyMovingPlatformFactory.createFactory(),
+      'ColdMovingPlatform': await ColdMovingPlatformFactory.createFactory(),
+      'GrassMovingPlatform': await GrassMovingPlatformFactory.createFactory(),
       'BasicLadder': await BasicLadderFactory.createFactory(),
       'InfoSign': InfoSignFactory(),
       'Door': DoorFactory(),

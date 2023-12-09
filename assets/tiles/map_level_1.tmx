@@ -136,7 +136,11 @@
   <object id="77" name="Enemy 1" type="Enemy" x="446.971" y="384.753">
    <point/>
   </object>
-  <object id="79" name="Grass moving platform" type="GrassMovingPlatform" x="1248" y="288" width="128" height="32"/>
+  <object id="79" name="Grass moving platform" type="GrassMovingPlatform" x="1248" y="288" width="128" height="32">
+   <properties>
+    <property name="TilePath" value="0,-10;0,20"/>
+   </properties>
+  </object>
   <object id="80" name="Cold Door" type="Door" x="1632" y="80" width="16" height="16">
    <properties>
     <property name="DestinationMap" value="map_level_cold_1.tmx"/>

@@ -5,11 +5,11 @@ import 'package:icy_hot_hops_flamejam2023/main.dart';
 import 'package:leap/leap.dart';
 import 'package:tiled/tiled.dart';
 
-class ColdMovingPlatform extends MovingPlatform<IcyHotGame> {
-  ColdMovingPlatform(super.tiledObject, super.tileSize)
+class GrassMovingPlatform extends MovingPlatform<IcyHotGame> {
+  GrassMovingPlatform(super.tiledObject, super.tileSize)
       : super.fromTiledObject() {
     width = 16 * 6;
-    height = 16 * 2;
+    height = 16 * 1.5;
     priority = 2;
   }
 
@@ -18,13 +18,11 @@ class ColdMovingPlatform extends MovingPlatform<IcyHotGame> {
   @override
   @mustCallSuper
   Future<void> onLoad() async {
-    super.onLoad();
-
-    final tileset = await Flame.images
-        .load('pixel_platformer_tileset/grass/grass_tileset.png');
+    final tileset =
+        await Flame.images.load('pixel_platformer_tileset/grass/grass_tileset.png');
     sprite = Sprite(
       tileset,
-      srcPosition: Vector2(97, 64),
+      srcPosition: Vector2(96, 62),
       srcSize: Vector2(16 * 6, 16 * 2),
     );
 
@@ -36,16 +34,14 @@ class ColdMovingPlatform extends MovingPlatform<IcyHotGame> {
   }
 }
 
-class ColdMovingPlatformFactory implements TiledObjectHandler {
-  ColdMovingPlatformFactory();
-
+class GrassMovingPlatformFactory implements TiledObjectHandler {
   @override
   void handleObject(TiledObject object, Layer layer, LeapMap map) {
-    final platform = ColdMovingPlatform(object, map.tileSize);
+    final platform = GrassMovingPlatform(object, map.tileSize);
     map.add(platform);
   }
 
-  static Future<ColdMovingPlatformFactory> createFactory() async {
-    return ColdMovingPlatformFactory();
+  static Future<GrassMovingPlatformFactory> createFactory() async {
+    return GrassMovingPlatformFactory();
   }
 }
