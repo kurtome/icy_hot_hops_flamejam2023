@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/enemy_bumper.dart';
+import 'package:icy_hot_hops_flamejam2023/entities/player.dart';
 import 'package:icy_hot_hops_flamejam2023/main.dart';
 import 'package:leap/leap.dart';
 
@@ -50,6 +51,10 @@ class EnemyCharacter extends Character<IcyHotGame> {
     for (final other in collisionInfo.allCollisions) {
       if (other is EnemyBumper) {
         faceLeft = other.x > x;
+      }
+
+      if (other is Player) {
+        other.health -= 1;
       }
     }
 

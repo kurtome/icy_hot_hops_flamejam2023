@@ -50,12 +50,16 @@ class Player extends CoinJumperCharacter {
   }
 
   @override
-  void update(double dt) {
+  Future<void> update(double dt) async {
+    // check this before super.update
+    if (wasAlive && !isAlive) {
+      FlameAudio.play('die.wav');
+    }
+
     super.update(dt);
 
     debugCollisions = false;
 
-    final wasAlive = isAlive;
     final wasJumping = jumping;
 
     didAirJump = false;
@@ -70,14 +74,10 @@ class Player extends CoinJumperCharacter {
       walking = false;
     }
 
-    if (world.isOutside(this) || (isDead && deadTime > 3)) {
-      health = initialHealth;
+    if (world.isOutside(this) || (isDead && deadTime > 2)) {
+      await game.reloadLevel();
       deadTime = 0;
-      resetPosition();
-    }
-
-    if (wasAlive && !isAlive) {
-      FlameAudio.play('die.wav');
+      health = initialHealth;
     }
     if (!wasJumping && jumping) {
       FlameAudio.play('jump.wav');

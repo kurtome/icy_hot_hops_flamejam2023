@@ -137,4 +137,8 @@ class IcyHotGame extends LeapGame with HasKeyboardHandlerComponents {
       _playLevelBgm();
     }
   }
+
+  Future<void> reloadLevel() async {
+    await _loadLevel();
+  }
 }
