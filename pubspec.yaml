@@ -32,9 +32,7 @@ flutter:
     - assets/audio/jump.wav
     - assets/audio/spawn.wav
     - assets/audio/village_music.mp3
-    - assets/images/level_ice_tileset.png
-    - assets/images/level_standard_tileset.png
-    - assets/images/repeatable_background.png
+    - assets/images/coin_animation.png
     - assets/images/player_spritesheet.png
     - assets/images/pixel_platformer_tileset/background/
     - assets/images/pixel_platformer_tileset/cave/

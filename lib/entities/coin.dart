@@ -43,14 +43,13 @@ class CoinFactory implements TiledObjectHandler {
   }
 
   static Future<CoinFactory> createFactory() async {
-    final tileset = await Flame.images.load('level_ice_tileset.png');
+    final tileset = await Flame.images.load('coin_animation.png');
     final spriteAnimation = SpriteAnimation.fromFrameData(
       tileset,
       SpriteAnimationData.sequenced(
         amount: 6,
-        stepTime: 0.2,
+        stepTime: 0.15,
         textureSize: Vector2(16, 16),
-        texturePosition: Vector2(169, 8),
       ),
     );
     return CoinFactory(spriteAnimation);

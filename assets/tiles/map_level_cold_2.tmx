@@ -112,7 +112,7 @@
   <image source="../images/pixel_platformer_tileset/cave/cave_tileset.png" width="512" height="320"/>
  </tileset>
  <imagelayer id="7" name="Sky" locked="1" offsetx="-350.121" offsety="6.32423" parallaxx="0.4" parallaxy="0.4" repeatx="1">
-  <image source="../images/repeatable_background.png" width="512" height="303"/>
+  <image source="../images/pixel_platformer_tileset/background/single_background.png" width="512" height="303"/>
  </imagelayer>
  <layer id="8" name="Ground" width="120" height="40">
   <data encoding="base64">

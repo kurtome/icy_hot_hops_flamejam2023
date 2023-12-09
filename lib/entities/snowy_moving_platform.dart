@@ -33,7 +33,7 @@ class SnowyMovingPlatformFactory implements TiledObjectHandler {
   }
 
   static Future<SnowyMovingPlatformFactory> createFactory() async {
-    final tileset = await Flame.images.load('level_ice_tileset.png');
+    final tileset = await Flame.images.load('pixel_platformer_tileset/ice/ice_tileset.png');
     final sprite = Sprite(
       tileset,
       srcPosition: Vector2(97, 64),
