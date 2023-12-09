@@ -18,8 +18,8 @@ class GrassMovingPlatform extends MovingPlatform<IcyHotGame> {
   @override
   @mustCallSuper
   Future<void> onLoad() async {
-    final tileset =
-        await Flame.images.load('pixel_platformer_tileset/grass/grass_tileset.png');
+    final tileset = await Flame.images
+        .load('pixel_platformer_tileset/grass/grass_tileset.png');
     sprite = Sprite(
       tileset,
       srcPosition: Vector2(96, 62),

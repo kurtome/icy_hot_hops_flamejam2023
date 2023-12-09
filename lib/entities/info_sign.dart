@@ -18,24 +18,12 @@ class InfoSign extends PhysicalEntity<IcyHotGame> {
   late final String text;
   TextBoxComponent? textBoxComponent;
 
-  TextBoxComponent _buildTextBox() {
-    return TextBoxComponent(
-      text: text,
-      position: Vector2(-16, -48),
-      boxConfig:
-          TextBoxConfig(dismissDelay: 3, margins: const EdgeInsets.all(4)),
-      textRenderer: TextPaint(
-        style: TextStyle(
-          fontSize: 8,
-          backgroundColor: Colors.black.withOpacity(0.4),
-        ),
-      ),
-    );
-  }
-
   void activateText() {
     if (textBoxComponent == null) {
-      textBoxComponent = _buildTextBox();
+      textBoxComponent = InfoTextBox(
+        text: text,
+        position: Vector2(-16, -48),
+      );
       add(textBoxComponent!);
     }
   }
@@ -48,6 +36,28 @@ class InfoSign extends PhysicalEntity<IcyHotGame> {
       textBoxComponent!.removeFromParent();
       textBoxComponent = null;
     }
+  }
+}
+
+class InfoTextBox extends TextBoxComponent {
+  InfoTextBox({super.text, super.position})
+      : super(
+          boxConfig:
+              TextBoxConfig(dismissDelay: 3, margins: const EdgeInsets.all(4)),
+          textRenderer: TextPaint(
+            style: const TextStyle(
+              fontSize: 9,
+              color: Colors.white,
+            ),
+          ),
+        );
+
+  final bgPaint = Paint()..color = Colors.black.withOpacity(0.5);
+
+  @override
+  void render(Canvas canvas) {
+    canvas.drawRect(size.toRect(), bgPaint);
+    super.render(canvas);
   }
 }
 

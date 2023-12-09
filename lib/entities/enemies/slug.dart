@@ -46,8 +46,7 @@ class SlugAnimation extends CharacterAnimation<_AnimationState, Slug> {
   @override
   @mustCallSuper
   Future<void> onLoad() async {
-    final tileset =
-        await Flame.images.load('slug_animation.png');
+    final tileset = await Flame.images.load('slug_animation.png');
 
     animations = {
       _AnimationState.run: SpriteAnimation.fromFrameData(
