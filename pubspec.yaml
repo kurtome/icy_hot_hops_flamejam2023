@@ -32,8 +32,8 @@ flutter:
     - assets/audio/jump.wav
     - assets/audio/spawn.wav
     - assets/audio/village_music.mp3
-    - assets/images/coin_animation.png
-    - assets/images/player_spritesheet.png
+    - assets/images/
+    - assets/images/dungeon_toolkit/
     - assets/images/pixel_platformer_tileset/background/
     - assets/images/pixel_platformer_tileset/cave/
     - assets/images/pixel_platformer_tileset/ice/

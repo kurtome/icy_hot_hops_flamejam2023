@@ -84,7 +84,8 @@ class BasicLadderFactory implements TiledObjectHandler {
   }
 
   static Future<BasicLadderFactory> createFactory() async {
-    final tileset = await Flame.images.load('pixel_platformer_tileset/ice/ice_tileset.png');
+    final tileset =
+        await Flame.images.load('pixel_platformer_tileset/ice/ice_tileset.png');
     return BasicLadderFactory(tileset);
   }
 }

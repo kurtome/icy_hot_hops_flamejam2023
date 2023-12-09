@@ -28,7 +28,7 @@ class IcyHotGame extends LeapGame with HasKeyboardHandlerComponents {
   late final Map<String, TiledObjectHandler> tiledObjectHandlers;
   late final Map<String, GroundTileHandler> groundTileHandlers;
 
-  var _currentLevel = 'map_level_cold_2.tmx';
+  var _currentLevel = 'map_level_0.tmx';
 
   Future<void> _loadLevel() async {
     await loadWorldAndMap(

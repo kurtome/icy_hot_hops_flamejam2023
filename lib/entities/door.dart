@@ -1,4 +1,6 @@
 import 'package:flame/components.dart';
+import 'package:flame/flame.dart';
+import 'package:flutter/foundation.dart';
 import 'package:icy_hot_hops_flamejam2023/main.dart';
 import 'package:leap/leap.dart';
 import 'package:tiled/tiled.dart';
@@ -29,6 +31,27 @@ class Door extends PhysicalEntity<IcyHotGame> {
       other.x = destinationObject!.x;
       other.y = destinationObject!.y;
     }
+  }
+
+  @override
+  @mustCallSuper
+  Future<void> onLoad() async {
+    super.onLoad();
+    final image = await Flame.images.load('dungeon_toolkit/door_animation.png');
+    add(
+      SpriteAnimationComponent(
+        playing: false,
+        position: Vector2(-16, -16),
+        animation: SpriteAnimation.fromFrameData(
+          image,
+          SpriteAnimationData.sequenced(
+            amount: 5,
+            stepTime: 0.1,
+            textureSize: Vector2(16 * 3, 16 * 2),
+          ),
+        ),
+      ),
+    );
   }
 }
 
