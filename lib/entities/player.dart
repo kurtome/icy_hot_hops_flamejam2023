@@ -11,6 +11,7 @@ import 'package:leap/leap.dart';
 class Player extends CoinJumperCharacter {
   Player({super.health = initialHealth}) : super(removeOnDeath: false) {
     solidTags.add(CommonTags.ground);
+    solidTags.add('Enemy');
   }
 
   static const initialHealth = 1;
@@ -185,6 +186,13 @@ class Player extends CoinJumperCharacter {
 
     if (isDead) {
       return;
+    }
+
+    if (collisionInfo.down &&
+        collisionInfo.downCollision!.tags.contains('Enemy')) {
+      (collisionInfo.downCollision! as Character).health -= 1;
+      didEnemyBop = true;
+      jumping = true;
     }
 
     for (final other in collisionInfo.allCollisions) {

@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/basic_ladder.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/coin.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/door.dart';
+import 'package:icy_hot_hops_flamejam2023/entities/enemies/slug.dart';
+import 'package:icy_hot_hops_flamejam2023/entities/enemy_bumper.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/grass_moving_platform.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/info_sign.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/player.dart';
@@ -29,7 +31,7 @@ class IcyHotGame extends LeapGame with HasKeyboardHandlerComponents {
   late final Map<String, TiledObjectHandler> tiledObjectHandlers;
   late final Map<String, GroundTileHandler> groundTileHandlers;
 
-  var _currentLevel = 'map_level_0.tmx';
+  var _currentLevel = 'map_level_cave_2.tmx';
 
   Future<void> _loadLevel() async {
     await loadWorldAndMap(
@@ -63,6 +65,8 @@ class IcyHotGame extends LeapGame with HasKeyboardHandlerComponents {
       'BasicLadder': await BasicLadderFactory.createFactory(),
       'InfoSign': InfoSignFactory(),
       'Door': DoorFactory(),
+      'Bumper': EnemyBumperFactory(),
+      'Enemy': SlugFactory(),
     };
 
     groundTileHandlers = {
