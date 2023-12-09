@@ -197,8 +197,11 @@ class Player extends CoinJumperCharacter {
         other.activateText();
       }
 
-      if (other is Door && _input.justPressed && _input.isPressedDown) {
-        other.enter(this);
+      if (other is Door &&
+          _input.justPressed &&
+          _input.isPressedDown &&
+          !hasStatus<EnteringDoorStatus>()) {
+        other.startEnter(this);
       }
     }
   }
@@ -291,6 +294,9 @@ class PlayerSpriteAnimation extends CharacterAnimation<_AnimationState, Player>
 
     if (character.isDead) {
       current = _AnimationState.death;
+    } else if (character.hasStatus<EnteringDoorStatus>()) {
+      current = _AnimationState.ladder;
+      playing = true;
     } else if (character.hasStatus<OnLadderStatus>()) {
       if (character.getStatus<OnLadderStatus>()!.movement ==
           LadderMovement.stopped) {

@@ -136,7 +136,7 @@
   </object>
  </objectgroup>
  <objectgroup id="10" name="Metadata">
-  <object id="19" name="Spawn" type="PlayerSpawn" x="68.952" y="602.746">
+  <object id="19" name="Spawn" type="PlayerSpawn" x="64" y="592">
    <point/>
   </object>
   <object id="94" name="ColdBoss" type="Boss" x="1562.41" y="604.803">

@@ -1,6 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/foundation.dart';
+import 'package:icy_hot_hops_flamejam2023/entities/player.dart';
 import 'package:icy_hot_hops_flamejam2023/main.dart';
 import 'package:leap/leap.dart';
 import 'package:tiled/tiled.dart';
@@ -23,8 +24,27 @@ class Door extends PhysicalEntity<IcyHotGame> {
 
   late final String? destinationMap;
   late final TiledObject? destinationObject;
+  late SpriteAnimationComponent spriteAnimation;
 
-  void enter(PhysicalEntity other) {
+  void startEnter(Player other) {
+    spriteAnimation.playing = true;
+    final status = EnteringDoorStatus(this, other);
+    other.statuses.add(status);
+    other.add(status);
+  }
+
+  void enter(Player other) {
+    spriteAnimation.playing = false;
+    spriteAnimation.animationTicker?.reset();
+
+    other.characterAnimation!.opacity = 1;
+
+    other.statuses.removeWhere((element) {
+      // this is a hack, but it's the easiest way to remove the status component
+      element.removeFromParent();
+      return element is EnteringDoorStatus;
+    });
+
     if (destinationMap != null) {
       game.goToLevel(destinationMap!);
     } else if (destinationObject != null) {
@@ -38,20 +58,40 @@ class Door extends PhysicalEntity<IcyHotGame> {
   Future<void> onLoad() async {
     super.onLoad();
     final image = await Flame.images.load('dungeon_toolkit/door_animation.png');
-    add(
-      SpriteAnimationComponent(
-        playing: false,
-        position: Vector2(-16, -16),
-        animation: SpriteAnimation.fromFrameData(
-          image,
-          SpriteAnimationData.sequenced(
-            amount: 5,
-            stepTime: 0.1,
-            textureSize: Vector2(16 * 3, 16 * 2),
-          ),
+    spriteAnimation = SpriteAnimationComponent(
+      playing: false,
+      position: Vector2(-16, -16),
+      animation: SpriteAnimation.fromFrameData(
+        image,
+        SpriteAnimationData.sequenced(
+          loop: false,
+          amount: 5,
+          stepTime: 0.1,
+          textureSize: Vector2(16 * 3, 16 * 2),
         ),
       ),
     );
+    add(spriteAnimation);
+  }
+}
+
+class EnteringDoorStatus extends StatusComponent with IgnoredByWorld {
+  final Door door;
+  final Player player;
+  double timeElapsed = 0;
+
+  EnteringDoorStatus(this.door, this.player);
+
+  @override
+  @mustCallSuper
+  void update(double dt) {
+    timeElapsed += dt;
+    if (timeElapsed > 1) {
+      door.enter(player);
+      player.characterAnimation!.opacity = 1;
+    } else {
+      player.characterAnimation!.opacity = 1 - timeElapsed;
+    }
   }
 }
 

@@ -175,6 +175,10 @@
   <object id="90" name="Enemy 2" type="Enemy" x="1294.8" y="380.264">
    <point/>
   </object>
-  <object id="91" name="Level Exit" type="Door" x="1504.86" y="463.369" width="16" height="16"/>
+  <object id="91" name="Level Exit" type="Door" x="1488" y="464" width="16" height="15.369">
+   <properties>
+    <property name="DestinationMap" value="map_level_cave_2.tmx"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

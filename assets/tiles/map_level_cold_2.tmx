@@ -130,8 +130,16 @@
   </object>
  </objectgroup>
  <objectgroup id="10" name="Metadata">
-  <object id="86" name="Cold 2 secret exit" type="Door" x="1559.18" y="368.123" width="15.8088" height="15.8088"/>
-  <object id="87" name="Cold 2 exit" type="Door" x="1568" y="543.354" width="16.6463" height="16.6463"/>
+  <object id="86" name="Cold 2 secret exit" type="Door" x="1559.9" y="368" width="16" height="15.9318">
+   <properties>
+    <property name="DestinationMap" value="map_level_cold_2.5.tmx"/>
+   </properties>
+  </object>
+  <object id="87" name="Cold 2 exit" type="Door" x="1568" y="544" width="16" height="16.0003">
+   <properties>
+    <property name="DestinationMap" value="map_level_cold_3.tmx"/>
+   </properties>
+  </object>
   <object id="90" name="Spawn" type="PlayerSpawn" x="66.0581" y="582.596">
    <point/>
   </object>
@@ -139,6 +147,6 @@
   <object id="98" name="BasicLadder" type="BasicLadder" x="1036.08" y="513.035" width="16" height="44"/>
   <object id="102" name="BasicLadder" type="BasicLadder" x="547.989" y="348.807" width="16" height="96"/>
   <object id="103" name="BasicLadder" type="BasicLadder" x="909.473" y="446.921" width="16" height="64"/>
-  <object id="105" name="BasicLadder" type="BasicLadder" x="1532.9" y="379.725" width="16" height="36"/>
+  <object id="105" name="BasicLadder" type="BasicLadder" x="1536.33" y="384.378" width="16" height="36"/>
  </objectgroup>
 </map>
