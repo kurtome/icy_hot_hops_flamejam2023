@@ -53,7 +53,7 @@ class EnemyCharacter extends Character<IcyHotGame> {
         faceLeft = other.x > x;
       }
 
-      if (other is Player) {
+      if (other is Player && other.iFramesTime <= 0) {
         other.health -= 1;
       }
     }

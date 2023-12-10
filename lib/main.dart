@@ -5,8 +5,10 @@ import 'package:flame/input.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/basic_ladder.dart';
+import 'package:icy_hot_hops_flamejam2023/entities/cave_moving_platform.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/coin.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/door.dart';
+import 'package:icy_hot_hops_flamejam2023/entities/enemies/caveman_boss.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/enemies/slug.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/enemies/snowman_boss.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/enemy_bumper.dart';
@@ -32,8 +34,8 @@ class IcyHotGame extends LeapGame with HasKeyboardHandlerComponents {
   late final Map<String, TiledObjectHandler> tiledObjectHandlers;
   late final Map<String, GroundTileHandler> groundTileHandlers;
 
-  //var _currentLevel = 'map_level_tutorial.tmx';
-  var _currentLevel = 'map_level_cave_3.tmx';
+  var _currentLevel = 'map_level_tutorial.tmx';
+  //var _currentLevel = 'map_level_credits.tmx';
 
   // Any level not in this map will use the default music
   final _levelMusic = {
@@ -74,14 +76,15 @@ class IcyHotGame extends LeapGame with HasKeyboardHandlerComponents {
     tiledObjectHandlers = {
       'Coin': await CoinFactory.createFactory(),
       'ColdMovingPlatform': await ColdMovingPlatformFactory.createFactory(),
+      'CaveMovingPlatform': await CaveMovingPlatformFactory.createFactory(),
       'GrassMovingPlatform': await GrassMovingPlatformFactory.createFactory(),
       'BasicLadder': await BasicLadderFactory.createFactory(),
       'InfoSign': InfoSignFactory(),
       'Door': DoorFactory(),
       'Bumper': EnemyBumperFactory(),
       'Enemy': SlugFactory(),
-      'SnowmanBoss': SnowmanBossFactory(),
       'SnowmanBossTrigger': SnowmanBossTriggerFactory(),
+      'CavemanBossTrigger': CavemanBossTriggerFactory(),
     };
 
     groundTileHandlers = {
@@ -130,7 +133,7 @@ class IcyHotGame extends LeapGame with HasKeyboardHandlerComponents {
     if (_levelMusic.containsKey(_currentLevel)) {
       track = _levelMusic[_currentLevel]!;
     }
-    //FlameAudio.bgm.play(track);
+    FlameAudio.bgm.play(track);
   }
 
   @override

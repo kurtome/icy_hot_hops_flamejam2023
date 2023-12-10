@@ -1,8 +1,10 @@
+import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/coin.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/door.dart';
+import 'package:icy_hot_hops_flamejam2023/entities/enemies/caveman_boss.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/enemies/snowman_boss.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/info_sign.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/player/coin_jumper_character.dart';
@@ -27,6 +29,7 @@ class Player extends CoinJumperCharacter {
   bool didEnemyBop = false;
   bool didAirJump = false;
   int jumpCount = 0;
+  double iFramesTime = 0;
 
   /// Render on top of the map tiles.
   @override
@@ -57,6 +60,9 @@ class Player extends CoinJumperCharacter {
     }
 
     super.update(dt);
+
+    iFramesTime -= dt;
+    iFramesTime = max(0, iFramesTime);
 
     debugCollisions = false;
 
@@ -125,7 +131,9 @@ class Player extends CoinJumperCharacter {
     final ladderCollision =
         collisionInfo.allCollisions.whereType<Ladder>().firstOrNull;
     final onLadderStatus = getStatus<OnLadderStatus>();
-    if ((_input.isJustPressedUp || _input.isJustPressedDown || _input.isJustPressedAction) &&
+    if ((_input.isJustPressedUp ||
+            _input.isJustPressedDown ||
+            _input.isJustPressedAction) &&
         ladderCollision != null &&
         onLadderStatus == null) {
       final status = OnLadderStatus(ladderCollision);
@@ -203,6 +211,9 @@ class Player extends CoinJumperCharacter {
       (collisionInfo.downCollision! as Character).health -= 1;
       didEnemyBop = true;
       jumping = true;
+
+      // avoid a bug with taking damage from bosses after bopping
+      iFramesTime = 0.5; 
     }
 
     for (final other in collisionInfo.allCollisions) {
@@ -224,6 +235,9 @@ class Player extends CoinJumperCharacter {
       }
 
       if (other is SnowmanBossTrigger) {
+        other.trigger();
+      }
+      if (other is CavemanBossTrigger) {
         other.trigger();
       }
     }
