@@ -42,8 +42,12 @@ class InfoSign extends PhysicalEntity<IcyHotGame> {
 class InfoTextBox extends TextBoxComponent {
   InfoTextBox({super.text, super.position})
       : super(
-          boxConfig:
-              TextBoxConfig(dismissDelay: 3, margins: const EdgeInsets.all(4)),
+          boxConfig: TextBoxConfig(
+            dismissDelay: 3,
+            timePerChar: 0.02,
+            growingBox: true,
+            margins: const EdgeInsets.all(12),
+          ),
           textRenderer: TextPaint(
             style: const TextStyle(
               fontSize: 9,

@@ -4,7 +4,6 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/door.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/enemies/enemy_character.dart';
-import 'package:icy_hot_hops_flamejam2023/entities/player.dart';
 import 'package:leap/leap.dart';
 import 'package:tiled/tiled.dart';
 
@@ -109,7 +108,7 @@ class SnowmanBoss extends EnemyCharacter {
       Door.placedToMap(
         position: Vector2(right, lastDown!.top - tileSize),
         size: Vector2(tileSize, tileSize),
-        destinationMap: 'map_level_1.tmx',
+        destinationMap: 'map_level_credits.tmx',
       ),
     );
   }

@@ -207,8 +207,7 @@ class Player extends CoinJumperCharacter {
       }
 
       if (other is Door &&
-          _input.justPressed &&
-          _input.isPressedDown &&
+          (_input.isJustPressedDown || _input.isJustPressedUp) &&
           !hasStatus<EnteringDoorStatus>()) {
         other.startEnter(this);
       }
