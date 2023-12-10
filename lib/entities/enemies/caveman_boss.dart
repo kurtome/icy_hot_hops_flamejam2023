@@ -1,7 +1,9 @@
 import 'package:flame/components.dart';
+import 'package:flame/effects.dart';
 import 'package:flame/flame.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/door.dart';
 import 'package:icy_hot_hops_flamejam2023/entities/enemies/enemy_character.dart';
 import 'package:leap/leap.dart';
@@ -172,6 +174,18 @@ class CavemanAnimation
         ),
       ),
     };
+
+
+    // tint red to differentiate from the snowman boss
+    add(
+      ColorEffect(
+        Colors.red,
+        EffectController(duration: 3, infinite: true),
+        // Means, applies from 0% to 80% of the color
+        opacityTo: 0.3,
+        opacityFrom: 0.5,
+      ),
+    );
 
     return super.onLoad();
   }
