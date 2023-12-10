@@ -125,7 +125,7 @@ class Player extends CoinJumperCharacter {
     final ladderCollision =
         collisionInfo.allCollisions.whereType<Ladder>().firstOrNull;
     final onLadderStatus = getStatus<OnLadderStatus>();
-    if ((_input.isJustPressedUp || _input.isJustPressedDown) &&
+    if ((_input.isJustPressedUp || _input.isJustPressedDown || _input.isJustPressedAction) &&
         ladderCollision != null &&
         onLadderStatus == null) {
       final status = OnLadderStatus(ladderCollision);
@@ -216,7 +216,9 @@ class Player extends CoinJumperCharacter {
       }
 
       if (other is Door &&
-          (_input.isJustPressedDown || _input.isJustPressedUp) &&
+          (_input.isJustPressedDown ||
+              _input.isJustPressedUp ||
+              _input.isJustPressedAction) &&
           !hasStatus<EnteringDoorStatus>()) {
         other.startEnter(this);
       }

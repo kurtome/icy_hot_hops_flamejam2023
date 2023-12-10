@@ -32,11 +32,13 @@ class IcyHotGame extends LeapGame with HasKeyboardHandlerComponents {
   late final Map<String, TiledObjectHandler> tiledObjectHandlers;
   late final Map<String, GroundTileHandler> groundTileHandlers;
 
-  //var _currentLevel = 'map_level_tutorial.tmx';
-  var _currentLevel = 'map_level_1.tmx';
+  var _currentLevel = 'map_level_tutorial.tmx';
+  //var _currentLevel = 'map_level_1.tmx';
 
   // Any level not in this map will use the default music
   final _levelMusic = {
+    'map_level_cave_2.tmx': 'just-a-dream-wake-up.mp3',
+    'map_level_cave_3.tmx': 'waiting-time.mp3',
     'map_level_cold_2.tmx': 'just-a-dream-wake-up.mp3',
     'map_level_cold_3.tmx': 'waiting-time.mp3',
     'map_level_credits.tmx': 'just-a-dream-wake-up.mp3',
@@ -128,7 +130,7 @@ class IcyHotGame extends LeapGame with HasKeyboardHandlerComponents {
     if (_levelMusic.containsKey(_currentLevel)) {
       track = _levelMusic[_currentLevel]!;
     }
-    //FlameAudio.bgm.play(track);
+    FlameAudio.bgm.play(track);
   }
 
   @override
