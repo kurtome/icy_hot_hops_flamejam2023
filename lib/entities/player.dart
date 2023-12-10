@@ -96,6 +96,13 @@ class Player extends CoinJumperCharacter {
     FlameAudio.play('spawn.wav');
   }
 
+  @override
+  @mustCallSuper
+  void onDeath() {
+    super.onDeath();
+    coins = 0;
+  }
+
   void updateHandleInput(double dt) {
     if (isAlive) {
       // Keep jumping if started.
