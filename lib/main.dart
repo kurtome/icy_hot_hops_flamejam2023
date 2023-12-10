@@ -32,8 +32,8 @@ class IcyHotGame extends LeapGame with HasKeyboardHandlerComponents {
   late final Map<String, TiledObjectHandler> tiledObjectHandlers;
   late final Map<String, GroundTileHandler> groundTileHandlers;
 
-  var _currentLevel = 'map_level_tutorial.tmx';
-  //var _currentLevel = 'map_level_0.tmx';
+  //var _currentLevel = 'map_level_tutorial.tmx';
+  var _currentLevel = 'map_level_1.tmx';
 
   // Any level not in this map will use the default music
   final _levelMusic = {

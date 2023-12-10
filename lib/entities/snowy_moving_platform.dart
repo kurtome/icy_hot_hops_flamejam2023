@@ -15,13 +15,17 @@ class ColdMovingPlatform extends MovingPlatform<IcyHotGame> {
 
   late Sprite sprite;
 
+  final _moveSpeed = Vector2(2, 2);
+  @override
+  Vector2 get moveSpeed => _moveSpeed;
+
   @override
   @mustCallSuper
   Future<void> onLoad() async {
     super.onLoad();
 
     final tileset = await Flame.images
-        .load('pixel_platformer_tileset/grass/grass_tileset.png');
+        .load('pixel_platformer_tileset/ice/ice_tileset.png');
     sprite = Sprite(
       tileset,
       srcPosition: Vector2(97, 64),

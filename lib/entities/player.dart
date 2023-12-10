@@ -19,7 +19,7 @@ class Player extends CoinJumperCharacter {
 
   int coins = 0;
 
-  late final Vector2 _spawn;
+  late Vector2 _spawn;
   late final IcyHotInput _input;
 
   double deadTime = 0;
@@ -76,6 +76,7 @@ class Player extends CoinJumperCharacter {
 
     if (world.isOutside(this) || (isDead && deadTime > 2)) {
       await game.reloadLevel();
+      coins = 0;
       deadTime = 0;
       health = initialHealth;
     }
@@ -85,6 +86,7 @@ class Player extends CoinJumperCharacter {
   }
 
   void resetPosition() {
+    _spawn = map.playerSpawn;
     x = _spawn.x;
     y = _spawn.y;
     velocity.x = 0;

@@ -15,6 +15,10 @@ class GrassMovingPlatform extends MovingPlatform<IcyHotGame> {
 
   late Sprite sprite;
 
+  final _moveSpeed = Vector2(2, 2);
+  @override
+  Vector2 get moveSpeed => _moveSpeed;
+
   @override
   @mustCallSuper
   Future<void> onLoad() async {
