@@ -213,7 +213,7 @@ class Player extends CoinJumperCharacter {
       jumping = true;
 
       // avoid a bug with taking damage from bosses after bopping
-      iFramesTime = 0.5; 
+      iFramesTime = 0.5;
     }
 
     for (final other in collisionInfo.allCollisions) {

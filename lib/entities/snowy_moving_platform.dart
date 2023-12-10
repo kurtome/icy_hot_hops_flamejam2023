@@ -24,8 +24,8 @@ class ColdMovingPlatform extends MovingPlatform<IcyHotGame> {
   Future<void> onLoad() async {
     super.onLoad();
 
-    final tileset = await Flame.images
-        .load('pixel_platformer_tileset/ice/ice_tileset.png');
+    final tileset =
+        await Flame.images.load('pixel_platformer_tileset/ice/ice_tileset.png');
     sprite = Sprite(
       tileset,
       srcPosition: Vector2(97, 64),
