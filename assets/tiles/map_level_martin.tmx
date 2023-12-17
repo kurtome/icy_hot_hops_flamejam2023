@@ -204,6 +204,10 @@
     <property name="Text" value="The door behind you will take you back. But... if you do see Martin… send him my regards.— J.M."/>
    </properties>
   </object>
-  <object id="104" name="back door" type="Door" x="32" y="592" width="17.6805" height="17.143"/>
+  <object id="104" name="back door" type="Door" x="32" y="592" width="17.6805" height="17.143">
+   <properties>
+    <property name="DestinationMap" value="map_level_0.tmx"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
