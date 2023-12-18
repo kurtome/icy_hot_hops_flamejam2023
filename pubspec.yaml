@@ -8,13 +8,19 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  flame: 1.11.0
+  flame: 1.12.0
   flame_audio: 2.1.4
   flame_tiled: 1.18.0
   flutter:
     sdk: flutter
   leap: 0.5.2
   tiled: 0.10.1
+
+dependency_overrides:
+  flame_tiled:
+    path: ../flame/packages/flame_tiled/
+  leap:
+    path: ../leap/packages/leap/
 
 dev_dependencies:
   flame_lint: 1.1.2

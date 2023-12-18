@@ -175,7 +175,6 @@ class CavemanAnimation
       ),
     };
 
-
     // tint red to differentiate from the snowman boss
     add(
       ColorEffect(

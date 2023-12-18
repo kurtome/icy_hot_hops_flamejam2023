@@ -38,8 +38,10 @@ class IcyHotGame extends LeapGame with HasKeyboardHandlerComponents {
 
   // Any level not in this map will use the default music
   final _levelMusic = {
+    'map_level_cave_1.tmx': 'just-a-dream-wake-up.mp3',
     'map_level_cave_2.tmx': 'just-a-dream-wake-up.mp3',
     'map_level_cave_3.tmx': 'waiting-time.mp3',
+    'map_level_cold_1.tmx': 'just-a-dream-wake-up.mp3',
     'map_level_cold_2.tmx': 'just-a-dream-wake-up.mp3',
     'map_level_cold_3.tmx': 'waiting-time.mp3',
     'map_level_credits.tmx': 'just-a-dream-wake-up.mp3',

@@ -14,8 +14,8 @@ class Slug extends EnemyCharacter {
         ) {
     solidTags.add(CommonTags.ground);
 
-    width = 10;
-    height = 8;
+    width = 12;
+    height = 10;
     priority = 2;
 
     position = Vector2(tiledObject.x - width / 2, tiledObject.y - width / 2);

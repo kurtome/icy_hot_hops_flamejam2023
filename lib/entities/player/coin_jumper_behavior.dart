@@ -42,9 +42,11 @@ class CoinJumperBehavior extends PhysicalBehavior<Player> {
     if (parent.isOnGround) {
       if (parent.walking) {
         if (parent.faceLeft) {
-          velocity.x = -parent.walkSpeed;
+          velocity.x =
+              max(-parent.walkSpeed, velocity.x - parent.walkSpeed * 4 * dt);
         } else {
-          velocity.x = parent.walkSpeed;
+          velocity.x =
+              min(parent.walkSpeed, velocity.x + parent.walkSpeed * 4 * dt);
         }
       } else {
         if (parent.faceLeft) {
