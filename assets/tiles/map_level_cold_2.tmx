@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="120" height="40" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#3a889e" nextlayerid="12" nextobjectid="110">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="120" height="40" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#3a889e" nextlayerid="13" nextobjectid="110">
  <tileset firstgid="1" name="grass_tileset" tilewidth="16" tileheight="16" tilecount="640" columns="32">
   <image source="../images/pixel_platformer_tileset/grass/grass_tileset.png" width="512" height="320"/>
   <tile id="290" type="Slope">
@@ -121,6 +121,9 @@
  <tileset firstgid="1281" name="cave_tileset" tilewidth="16" tileheight="16" tilecount="640" columns="32">
   <image source="../images/pixel_platformer_tileset/cave/cave_tileset.png" width="512" height="320"/>
  </tileset>
+ <imagelayer id="12" name="bg sky" offsetx="0" offsety="-200" parallaxy="0.4" repeatx="1">
+  <image source="../images/pixel_platformer_tileset/background/sky_solid_color.png" width="512" height="303"/>
+ </imagelayer>
  <imagelayer id="7" name="Sky" locked="1" offsetx="-350.121" offsety="6.32423" parallaxx="0.4" parallaxy="0.4" repeatx="1">
   <image source="../images/pixel_platformer_tileset/background/single_background.png" width="512" height="303"/>
  </imagelayer>

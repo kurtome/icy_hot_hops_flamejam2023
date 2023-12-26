@@ -6,8 +6,7 @@ import 'package:leap/leap.dart';
 import 'package:tiled/tiled.dart';
 
 class CaveMovingPlatform extends MovingPlatform<IcyHotGame> {
-  CaveMovingPlatform(super.tiledObject, super.tileSize)
-      : super.fromTiledObject() {
+  CaveMovingPlatform(super.tiledObject) : super.fromTiledObject() {
     width = 16 * 6;
     height = 16 * 2;
     priority = 2;
@@ -45,7 +44,7 @@ class CaveMovingPlatformFactory implements TiledObjectHandler {
 
   @override
   void handleObject(TiledObject object, Layer layer, LeapMap map) {
-    final platform = CaveMovingPlatform(object, map.tileSize);
+    final platform = CaveMovingPlatform(object);
     map.add(platform);
   }
 

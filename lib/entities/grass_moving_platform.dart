@@ -6,8 +6,7 @@ import 'package:leap/leap.dart';
 import 'package:tiled/tiled.dart';
 
 class GrassMovingPlatform extends MovingPlatform<IcyHotGame> {
-  GrassMovingPlatform(super.tiledObject, super.tileSize)
-      : super.fromTiledObject() {
+  GrassMovingPlatform(super.tiledObject) : super.fromTiledObject() {
     width = 16 * 6;
     height = 16 * 1.5;
     priority = 2;
@@ -22,6 +21,8 @@ class GrassMovingPlatform extends MovingPlatform<IcyHotGame> {
   @override
   @mustCallSuper
   Future<void> onLoad() async {
+    super.onLoad();
+
     final tileset = await Flame.images
         .load('pixel_platformer_tileset/grass/grass_tileset.png');
     sprite = Sprite(
@@ -41,7 +42,7 @@ class GrassMovingPlatform extends MovingPlatform<IcyHotGame> {
 class GrassMovingPlatformFactory implements TiledObjectHandler {
   @override
   void handleObject(TiledObject object, Layer layer, LeapMap map) {
-    final platform = GrassMovingPlatform(object, map.tileSize);
+    final platform = GrassMovingPlatform(object);
     map.add(platform);
   }
 

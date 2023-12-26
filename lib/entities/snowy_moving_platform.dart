@@ -6,8 +6,7 @@ import 'package:leap/leap.dart';
 import 'package:tiled/tiled.dart';
 
 class ColdMovingPlatform extends MovingPlatform<IcyHotGame> {
-  ColdMovingPlatform(super.tiledObject, super.tileSize)
-      : super.fromTiledObject() {
+  ColdMovingPlatform(super.tiledObject) : super.fromTiledObject() {
     width = 16 * 6;
     height = 16 * 2;
     priority = 2;
@@ -45,7 +44,7 @@ class ColdMovingPlatformFactory implements TiledObjectHandler {
 
   @override
   void handleObject(TiledObject object, Layer layer, LeapMap map) {
-    final platform = ColdMovingPlatform(object, map.tileSize);
+    final platform = ColdMovingPlatform(object);
     map.add(platform);
   }
 
